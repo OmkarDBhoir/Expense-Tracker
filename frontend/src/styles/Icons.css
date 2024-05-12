@@ -1,0 +1,8 @@
+.iconsize {
+    width: 20px;
+    height: 20px;
+}
+
+.iconsize>path {
+    fill: #b3b3b3;
+}
