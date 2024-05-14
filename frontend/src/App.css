@@ -8,13 +8,12 @@ body {
   background-color: #181818;
   font-size: 17px;
   color: #fff;
-
   height: 100vh;
 }
 
 .container-fluid {
   height: 100vh;
-  padding: 20px;
+  padding-left: 0px !important;
   background-color: #181818;
 }
 
@@ -22,6 +21,18 @@ body {
     background-color: #252525;
     border: 1px solid rgba(249,249,249, 0.08);
     color: white;
+    height: 97vh;
+}
+
+.innerLayout {
+  padding: 2rem 1.5rem;
+  width: 100%;
+}
+
+.contentWrapper {
+  display: flex;
+  border: 1px solid;
+  flex-direction: row;
 }
 
 @media (prefers-color-scheme: dark) {

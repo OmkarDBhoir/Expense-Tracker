@@ -1,7 +1,7 @@
 const Settings: React.FC = () => {
   return (
     <>
-      <div>
+      <div className="col mainContainer">
         <h1>Settings</h1>
       </div>
     </>

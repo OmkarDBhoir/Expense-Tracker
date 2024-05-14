@@ -1,7 +1,7 @@
 const Expense: React.FC = () => {
   return (
     <>
-      <div>
+      <div className="col mainContainer">
         <h1>Expense</h1>
       </div>
     </>
