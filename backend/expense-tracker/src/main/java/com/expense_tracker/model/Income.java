@@ -23,10 +23,10 @@ public class Income {
 	private String title;
 	
 	@Column(name="amount", nullable = false, length = 20)
-	private String amount;
+	private Long amount;
 	
 	@Column(name = "type")
-	private String type="Expense";
+	private String type="Income";
 	
 	@Column(name = "date")
 	private Timestamp date;
@@ -44,7 +44,7 @@ public class Income {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Income(Long id, String title, String amount, String type, Timestamp date, String category,
+	public Income(Long id, String title, Long amount, String type, Timestamp date, String category,
 			String description, Timestamp createdOn) {
 		super();
 		this.id = id;
@@ -73,11 +73,11 @@ public class Income {
 		this.title = title;
 	}
 
-	public String getAmount() {
+	public Long getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(Long amount) {
 		this.amount = amount;
 	}
 

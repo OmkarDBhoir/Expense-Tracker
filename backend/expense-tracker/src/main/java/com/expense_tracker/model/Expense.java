@@ -22,7 +22,7 @@ public class Expense {
 	private String title;
 	
 	@Column(name="amount", nullable = false, length = 20)
-	private String amount;
+	private Long amount;
 	
 	@Column(name = "type")
 	private String type="Expense";
@@ -43,7 +43,7 @@ public class Expense {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Expense(Long id, String title, String amount, String type, Timestamp date, String category,
+	public Expense(Long id, String title, Long amount, String type, Timestamp date, String category,
 			String description, Timestamp createdOn) {
 		super();
 		this.id = id;
@@ -72,11 +72,11 @@ public class Expense {
 		this.title = title;
 	}
 
-	public String getAmount() {
+	public Long getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(Long amount) {
 		this.amount = amount;
 	}
 
