@@ -33,7 +33,7 @@ public class Expense {
 	@Column(name = "category", nullable = false)
 	private String category;
 	
-	@Column(name = "description", nullable = false, length = 20)
+	@Column(name = "description", nullable = false)
 	private String description;
 	
 	@Column(name = "crtd_on")

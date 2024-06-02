@@ -2,6 +2,7 @@ package com.expense_tracker.service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class IncomeServiceImpl implements IncomeService{
 
 	@Override
 	public List<Income> getIncomes() {
-		List<Income> income = null;
+		List<Income> income = new ArrayList<Income>();
 		
 		try {
 			income = incomeRepo.findAll();
