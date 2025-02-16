@@ -6,8 +6,17 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var cors = require('cors');
 
+require('dotenv').config();
+
+// db connect 
+const pool = require("./db/db");
+
+
+//middleware
 var app = express();
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,5 +46,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const PORT = process.env.PORT;
+
+const server = () => {
+  app.listen(PORT, () => {
+    console.log("listening on port:", PORT);
+  })
+}
+
+server();
 
 module.exports = app;
