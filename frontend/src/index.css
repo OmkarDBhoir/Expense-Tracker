@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  /* color: rgba(255, 255, 255, 0.87); */
+  color: black;
+  /* background-color: #242424; */
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -30,7 +33,85 @@ body {
   min-height: 100vh;
 }
 
-h1 {
+.flexedRow {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.flexedColumn {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.justify-content-center{
+  justify-content: center !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.justify-content-evenly{
+  justify-content: space-evenly !important;
+}
+
+.justify-content-around {
+  justify-content: space-around !important;
+}
+
+.justify-content-start {
+  justify-content: start !important;
+}
+
+.justify-content-end {
+  justify-content: end !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.align-items-start {
+  align-items: flex-start !important;
+}
+
+.align-items-end {
+  align-items: end !important;
+}
+
+.align-items-flex-start {
+  align-items: flex-start !important;
+}
+
+.align-items-flex-end {
+  align-items: flex-end !important;
+}
+
+.align-items-baseline {
+  align-items: baseline !important;
+}
+
+.align-items-normal {
+  align-items: normal !important;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-3 {
+  gap: 3rem;
+}
+
+.gap-4 {
+  gap: 4rem;
+}
+
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
@@ -65,4 +146,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

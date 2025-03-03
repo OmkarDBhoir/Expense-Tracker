@@ -1,33 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import Auth from './components/Auth'
+import { DecodedToken, UserData } from './Pojos/UserPojo'
+import { jwtDecode } from 'jwt-decode';
+import Main from './components/Main';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userData, setUserData] = useState<UserData | undefined>(undefined);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decode: DecodedToken = jwtDecode(token);
+        if (decode.exp * 1000 > Date.now()) {
+          setUserData(decode);
+        } else {
+          localStorage.removeItem('token');
+          setUserData(undefined);
+        }
+      } catch (error) {
+        console.error('Error decoding token: ', error);
+        setUserData(undefined);
+      }
+    }
+  }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='main'>
+        {(!userData || !userData.isAuthenticated) && <Auth />}
+        {(userData && userData.isAuthenticated) && <><Main /></>}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

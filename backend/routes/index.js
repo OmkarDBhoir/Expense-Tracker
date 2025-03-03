@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const usersRouter = require('./users');
+const incomeRouter = require('./income');
+const expenseRouter = require('./expense');
+const authRouter = require('./auth');
+
+router.use('/users', usersRouter);
+router.use('/income', incomeRouter);
+router.use('/expense', expenseRouter);
+router.use('/', authRouter);
+
 
 module.exports = router;

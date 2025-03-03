@@ -14,9 +14,9 @@ exports.addExpense = async (req, resp) => {
         if (typeof amount !== 'number' || amount <= 0) {
             return resp.status(400).json({ message: "Amount must be a positive number!" });
         }
-
+        console.log(req.user.userid);
         // const result = await pool.query(`INSERT INTO dev.income (id, title, amount, category, description, createon, createby) VALUES(nextval('dev.income_id_seq'::regclass), $1, $2, $3, $4, $5, $6);`, [title, amount, category, description, date, createBy]);
-        const result = await pool.query(`INSERT INTO expense (title, amount, category, description, createon, createby) VALUES(nextval('expense_id_seq'::regclass), $1, $2, $3, $4, $5, $6);`, [title, amount, category, description, createdOn, createdBy]);
+        const result = await pool.query(`INSERT INTO expense (id, title, amount, category, description, userid, createon) VALUES(nextval('dev.income_id_seq'::regclass), '', 0, '', '', '', ''), $1, $2, $3, $4, $5, $6);`, [title, amount, category, description, req.user.userid, createdOn]);
         return resp.status(201).json({ message: "Income added" });
     } catch (error) {
         console.error(error);
