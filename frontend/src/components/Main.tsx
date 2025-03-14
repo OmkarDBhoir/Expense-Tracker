@@ -17,7 +17,7 @@ const Main: React.FC = () => {
     const displayData = () => {
         switch (active) {
             case 1:
-                return <Dashboard />
+            return <Dashboard />
             case 2:
                 return <Dashboard />
             case 3:
