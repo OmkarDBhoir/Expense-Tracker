@@ -9,6 +9,6 @@ export const MainLayout = styled.div`
 `
 
 export const InnerLayout = styled.div`
-    paddding: 2rem 1.5rem;
+    padding: 2rem 1.5rem;
     width:: 100;
 `
