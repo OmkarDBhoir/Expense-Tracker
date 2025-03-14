@@ -2,6 +2,7 @@ const pool = require('../db/db');
 
 exports.addIncome = async (req, resp) => {
     try {
+        console.log(req);
         const { title, amount, category, description, date } = req.body;
         const createBy = 'portal';
         const createdOn = new Date();
@@ -14,7 +15,7 @@ exports.addIncome = async (req, resp) => {
         }
 
         // const result = await pool.query(`INSERT INTO dev.income (id, title, amount, category, description, createon, createby) VALUES(nextval('dev.income_id_seq'::regclass), $1, $2, $3, $4, $5, $6);`, [title, amount, category, description, date, createBy]);
-        const result = await pool.query(`INSERT INTO income (id, title, amount, category, description, userid, createon) VALUES(nextval('income_id_seq'::regclass), $1, $2, $3, $4, $5, $6);`, [title, amount, category, description, createdOn, createBy]);
+        const result = await pool.query(`INSERT INTO income (id, title, amount, category, description, username, createon) VALUES(nextval('income_id_seq'::regclass), $1, $2, $3, $4, $5, $6);`, [title, amount, category, description, req.user.username, createdOn]);
         return resp.status(201).json({ message: "Income added" });
     } catch (error) {
         console.error(error);

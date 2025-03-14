@@ -20,8 +20,8 @@ const Navigation: React.FC<NavigationProps> = ({ active, setActive }) => {
                 </div>
             </div>
             <ul className="menu-items">
-                {menuItems.map((item, index) => {
-                    return <li className={`${active === index ? 'active' : ""}`} key={item.id} onClick={() => { setActive(index) }}>{item.icon} <span>{item.title}</span></li>
+                {menuItems.map((item) => {
+                    return <li className={`${active === item.id ? 'active' : ""}`} key={item.id} onClick={() => { setActive(item.id) }}>{item.icon} <span>{item.title}</span></li>
                 })}
             </ul>
             <div className="bottom-nav">
@@ -33,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({ active, setActive }) => {
 
 const NavStyled = styled.nav`
     padding: 2rem 1.5rem;
-    width: 374px;
+    width: 300px;
     height: 100%;
     background: rgba(252, 246, 249, 0.78);
     border: 3px solid #FFFFFF;
@@ -81,9 +81,10 @@ const NavStyled = styled.nav`
             color: rgba(34, 34, 96, .6);
             padding-left: 1rem;
             position: relative;
+            font-size: 1rem;
             i{
                 color: rgba(34, 34, 96, 0.6);
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 transition: all .4s ease-in-out;
             }
         }

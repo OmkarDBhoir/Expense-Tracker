@@ -5,10 +5,11 @@ const usersRouter = require('./users');
 const incomeRouter = require('./income');
 const expenseRouter = require('./expense');
 const authRouter = require('./auth');
+const protectedRoute = require('../middleware/middleware');
 
-router.use('/users', usersRouter);
-router.use('/income', incomeRouter);
-router.use('/expense', expenseRouter);
+router.use('/users', protectedRoute, usersRouter);
+router.use('/income', protectedRoute, incomeRouter);
+router.use('/expense', protectedRoute, expenseRouter);
 router.use('/', authRouter);
 
 

@@ -16,6 +16,11 @@ exports.login = async (req, resp) => {
             resp.status(400).json({ message: "Wrong password" });
             return;
         }
+        
+        if(!result.rows[0].isactive) {
+            resp.status(400).json({ message: "User is not active" });
+        }
+
 
         const user = result.rows[0];
         const userData = {
@@ -35,13 +40,9 @@ exports.login = async (req, resp) => {
 exports.signup = async (req, resp) => {
     try {
         const { username, email, password } = req.body;
-        const createdOn = new Date();
-        const userId = uuidv4();
         const encryptedPasswd = await PasswordUtils.hashPassword(password);
-        const result = await pool.query("INSERT INTO dev.users (id, userid, username, email, password, createdon) VALUES(nextval('user_id_seq'::regclass), $1, $2, $3, $4, $5) RETURNING ID;", [userId, username, email, encryptedPasswd, createdOn]);
-
+        await pool.query("INSERT INTO dev.users (id, username, email, password, isactive, createdon) VALUES(nextval('user_id_seq'::regclass), $1, $2, $3, true, NOW()) RETURNING ID;", [username, email, encryptedPasswd]);
         const userData = {
-            userId: userId,
             username: username,
             isAuthenticated: true
         }
