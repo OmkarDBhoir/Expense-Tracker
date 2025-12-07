@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  width: 100vw;
+  height: 100vh;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ---------- Base Colors ---------- */
+  --color-bg: #0d1117;             /* Main background */
+  --color-surface: rgba(255, 255, 255, 0.06); /* Glass card */
+  --color-border: rgba(255, 255, 255, 0.12);  /* Soft borders */
+
+  /* ---------- Text Colors ---------- */
+  --text-primary: #e5e7eb;        /* Light gray */
+  --text-secondary: #9ca3af;      /* Subtle gray */
+  --text-muted: #6b7280;
+
+  /* ---------- Brand Colors ---------- */
+  --primary: #3b82f6;             /* Blue neon */
+  --primary-hover: #2563eb;
+
+  --accent: #8b5cf6;              /* Purple neon */
+  --accent-hover: #7c3aed;
+
+  --success: #10b981;
+  --success-hover: #059669;
+
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+
+  /* ---------- Glow Colors ---------- */
+  --glow-primary: rgba(59, 130, 246, 0.45);
+  --glow-accent: rgba(139, 92, 246, 0.45);
+  --glow-danger: rgba(239, 68, 68, 0.45);
+  --glow-success: rgba(16, 185, 129, 0.45);
+
+  /* ---------- Glass Effects ---------- */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-hover: rgba(255, 255, 255, 0.1);
+  --glass-blur: 14px;
+
+  /* ---------- Spacing ---------- */
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-soft: 0 0 12px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 16px var(--glow-primary);
+
+  /* ---------- Transitions ---------- */
+  --transition: 0.2s ease;
+
+  --bg-color: #0f172a;
+  --color-card: rgba(255, 255, 255, 0.07);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --color-text: #f1f5f9;
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+
+  /* --bg-dark: #0D0F12;
+  --bg-surface: #161A1F;
+  --bg-hover: #1E232A;
+
+  --border-subtle: #22272E;
+
+  --primary: #4F8CFF;
+  --primary-hover: #3B6ED4;
+
+  --success: #22C55E;
+  --danger: #EF4444;
+  --warning: #F59E0B;
+
+  --text-bright: #F9FAFB;
+  --text-muted: #D1D5DB;
+  --text-dim: #6B7280; */
+}
+
+/* a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */

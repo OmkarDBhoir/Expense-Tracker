@@ -1,45 +1,56 @@
 import { useState } from "react";
-import { BaseConstants } from "../Services/baseconstants";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
+const Login: React.FC = () => {
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [submitting, setSubmitting] = useState<boolean>(false);
 
-const Login: React.FC<{ setCurrentPage: React.Dispatch<React.SetStateAction<number>> }> = ({ setCurrentPage }) => {
-    const [username, setUsername] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post(`${BaseConstants.BASE_URL}/login`, { username, password });
-            if (response && response.data && response.data.token) {
-                localStorage.setItem('token', response.data.token);
-                window.location.reload();
+            setSubmitting(true);
+            if (username && password) {
+                await login({ username, password });
+                navigate("/", { replace: true });
             }
         } catch (error) {
-            console.error(error);
+            console.error("Login failed", error);
+        } finally {
+            setSubmitting(false);
         }
     }
-
     return (
         <>
-            <div className="login-card flexedColumn">
-                <div className="login-title flexedRow align-items-center justify-content-center">Login</div>
-                <div className="inputWrapper flexedRow justify-content-center align-items-center gap-1">
-                    <label htmlFor="loginUser">Username:</label>
-                    <input id="loginUser" type="text" onChange={(e) => setUsername(e.target.value)} />
-                </div>
-                <div className="inputWrapper flexedRow justify-content-center align-items-center gap-1">
-                    <label htmlFor="loginPassword">Password:</label>
-                    <input id="loginPassword" type="password" onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div className="buttonWrapper flexedRow justify-content-center align-items-center">
-                    <button id="loginButton" onClick={handleLogin}>Login</button>
-                </div>
-                <div className="alterate-link">
-                    <p>Don't have an account? <a onClick={() => setCurrentPage(1)}>Sign Up</a></p>
+            <div className="flex-1 w-full min-h-screen grid place-items-center">
+                <div className="w-[400px] h-[450px] backdrop-blur-md bg-white/10 border border-white/10 rounded-sm shadow flex flex-col">
+                    <div className="w-full h-[25%] grid place-items-center text-2xl font-bold">Login</div>
+                    <div className="w-full flex-1 flex flex-col items-center justify-center gap-4">
+                        <div className="w-[90%] h-10 flex items-center justify-between gap-2">
+                            <label htmlFor="username">Username</label>
+                            <input type="text" id="username" className="h-8 w-[70%] border-2 border-white/10 focus:outline-0 p-2" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                        </div>
+                        <div className="w-[90%] h-10 flex items-center justify-between gap-2">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" id="password" className="h-8 w-[70%] border-2 border-white/10 focus:outline-0 p-2" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        </div>
+                        <div className="w-[90%] h-10 flex items-center justify-center gap-2">
+                            <button className="text-(--primary)">forgot passwword</button>
+                        </div>
+                        <div className="w-full h-10">
+                            <button className="w-25 h-8 border-2 border-white/10 rounded-sm bg-(--success) hover:bg-(--success-hover) text-white" onClick={handleLogin} disabled={!username || !password || submitting}>{submitting ? "Logging in..." :"Login"}</button>
+                        </div>
+                        <div>
+                            <p>Don't have an account? <a className="text-(--primary) border-0 bg-transparent" href="/signup">Signup</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 export default Login;

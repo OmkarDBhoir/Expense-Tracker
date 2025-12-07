@@ -1,19 +1,26 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import './styles/index.css'
 import App from './App.tsx'
-import { GlobalStyle } from './Styles/GlobalStyle.tsx'
-import { GlobalProvider } from './components/context/globalContext.tsx'
-import axios from 'axios'
-
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
-axios.defaults.withCredentials = true;
+import { ToastContainer } from 'react-toastify'
+import { ErrorBoundary } from './components/ErrorBoundary.tsx'
+import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext.tsx'
+import { LoaderProvider } from './context/LoaderContext.tsx'
+import LoaderBridge from './components/LoaderBridge.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GlobalStyle />
-    <GlobalProvider>
-      <App />
-    </GlobalProvider>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <LoaderProvider>
+          <AuthProvider>
+            <LoaderBridge />
+            <App />
+            <ToastContainer theme='dark' position='top-right' />
+          </AuthProvider>
+        </LoaderProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>,
 )

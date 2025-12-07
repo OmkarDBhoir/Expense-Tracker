@@ -10,7 +10,7 @@ const protectedRoute = require('../middleware/middleware');
 router.use('/users', protectedRoute, usersRouter);
 router.use('/income', protectedRoute, incomeRouter);
 router.use('/expense', protectedRoute, expenseRouter);
-router.use('/', authRouter);
+router.use('/auth', authRouter);
 
 
 module.exports = router;

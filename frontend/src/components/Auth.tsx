@@ -1,19 +1,16 @@
-import { useState } from "react";
-import '../static/auth.css';
-import Login from "./Login";
-import Signup from "./Signup";
+// import { useState } from "react";
+// import Login from "./Login";
+// import Signup from "./Signup";
 
-const Auth: React.FC = () => {
-    const [currentPage, setCurrentPage] = useState<number>(0);
 
-    return (
-        <>
-            <div className="auth-main">
-                {currentPage === 0 && <Login setCurrentPage={setCurrentPage} />}
-                {currentPage === 1 && <Signup setCurrentPage={setCurrentPage} />}
-            </div>
-        </>
-    );
-}
+// const Auth: React.FC = () => {
+//     const [isLogginPage, setIsLoginPage] = useState<boolean>(true);
+//     return (
+//         <>
+//             <div className="flex-1 w-full min-h-screen grid place-items-center">
+//             </div>
+//         </>
+//     )
+// }
 
-export default Auth;
+// export default Auth;

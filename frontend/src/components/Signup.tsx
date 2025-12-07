@@ -1,50 +1,34 @@
-import { useState } from "react";
-import axios from "axios";
-import { BaseConstants } from "../Services/baseconstants";
 
-
-const Signup: React.FC<{ setCurrentPage: React.Dispatch<React.SetStateAction<number>> }> = ({ setCurrentPage }) => {
-    const [username, setUsername] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-
-    const handleSignup = async () => {
-        try {
-            const response = await axios.post(`${BaseConstants.BASE_URL}/signup`, { username, email, password });
-            if (response && response.data && response.data.token) {
-                localStorage.setItem('token', response.data.token);
-                window.location.reload();
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
+const Signup: React.FC = () => {
     return (
         <>
-            <div className="login-card flexedColumn">
-                <div className="login-title flexedRow align-items-center justify-content-center">Sign Up</div>
-                <div className="inputWrapper flexedRow justify-content-between align-items-center">
-                    <label htmlFor="loginUser">Username:</label>
-                    <input id="loginUser" type="text" onChange={(e) => setUsername(e.target.value)} />
-                </div>
-                <div className="inputWrapper flexedRow justify-content-between align-items-center">
-                    <label htmlFor="loginUser">Email:</label>
-                    <input id="loginUser" type="text" onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="inputWrapper flexedRow justify-content-between align-items-center">
-                    <label htmlFor="loginPassword">Password:</label>
-                    <input id="loginPassword" type="password" onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div className="buttonWrapper flexedRow justify-content-center align-items-center">
-                    <button id="loginButton" onClick={handleSignup}>Sign Up</button>
-                </div>
-                <div className="alterate-link">
-                    <p>Already have an account? <a onClick={() => { setCurrentPage(0) }}>Login</a></p>
+            <div className="flex-1 w-full min-h-screen grid place-items-center">
+                <div className="w-[400px] h-[450px] backdrop-blur-md bg-white/10 border border-white/10 rounded-sm shadow flex flex-col">
+                    <div className="w-full h-[25%] grid place-items-center text-2xl font-bold">Signup</div>
+                    <div className="w-full flex-1 flex flex-col items-center justify-center gap-4">
+                        <div className="w-[90%] h-10 flex items-center justify-between gap-2">
+                            <label htmlFor="username">Username</label>
+                            <input type="text" id="username" className="h-8 w-[70%] border-2 border-white/10 focus:outline-0 p-2" />
+                        </div>
+                        <div className="w-[90%] h-10 flex items-center justify-between gap-2">
+                            <label htmlFor="email">Email</label>
+                            <input type="text" id="email" className="h-8 w-[70%] border-2 border-white/10 focus:outline-0 p-2" />
+                        </div>
+                        <div className="w-[90%] h-10 flex items-center justify-between gap-2">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" id="password" className="h-8 w-[70%] border-2 border-white/10 focus:outline-0 p-2" />
+                        </div>
+                        <div className="w-full h-10">
+                            <button className="w-25 h-8 border-2 border-white/10 rounded-sm bg-(--success) hover:bg-(--success-hover) text-white">Signup</button>
+                        </div>
+                        <div>
+                            <p>Already have an account? <a className="text-(--primary) border-0 bg-transparent" href="/login">Login</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 export default Signup;

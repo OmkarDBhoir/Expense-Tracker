@@ -1,36 +1,34 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Auth from './components/Auth'
-import { DecodedToken, UserData } from './Pojos/UserPojo'
-import { jwtDecode } from 'jwt-decode';
-import Main from './components/Main';
+import Home from './components/Home'
+import { Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import ProtectedRoute from './components/PrivateRoute';
+import Signup from './components/Signup';
+import { useAuth } from './hooks/useAuth';
+import { useLoader } from './hooks/useLoader';
 
 function App() {
-  const [userData, setUserData] = useState<UserData | undefined>(undefined);
+
+  const { initializing } = useAuth();
+  const { setLoading } = useLoader();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const decode: DecodedToken = jwtDecode(token);
-        if (decode.exp * 1000 > Date.now()) {
-          setUserData(decode);
-        } else {
-          localStorage.removeItem('token');
-          setUserData(undefined);
-        }
-      } catch (error) {
-        console.error('Error decoding token: ', error);
-        setUserData(undefined);
-      }
-    }
-  }, [])
+    setLoading(initializing);
+  }, [initializing, setLoading])
 
   return (
     <>
-      <div className='main'>
-        {(!userData || !userData.isAuthenticated) && <Auth />}
-        {(userData && userData.isAuthenticated) && <><Main /></>}
+      <div className='w-full min-w-screen min-h-screen flex flex-col'>
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
+        </Routes>
       </div>
     </>
   )
